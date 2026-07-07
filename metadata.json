@@ -1,0 +1,6 @@
+{
+  "name": "Lodziarnia Włoska Prima Vera",
+  "description": "Autentyczne włoskie gelato w województwie świętokrzyskim. Tradycyjne receptury, naturalne składniki i oaza smaku.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
