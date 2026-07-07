@@ -42,11 +42,15 @@
       scroll-behavior: smooth;
     }
 
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       font-family: var(--font-sans);
       background-color: var(--black);
       color: var(--white);
-      overflow-x: hidden;
       line-height: 1.6;
     }
 
@@ -89,6 +93,7 @@
     section {
       position: relative;
       padding: 100px 0;
+      overflow: hidden;
     }
     .container {
       width: 100%;
@@ -1276,6 +1281,24 @@
       }
       section {
         padding: 70px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .onas-badge-card, .hours-card, .kontakt-side-card {
+        padding: 30px 20px;
+      }
+      .badge-card-brand {
+        font-size: 1.7rem;
+      }
+      .kontakt-side-card-hours {
+        font-size: 1.8rem;
+      }
+      .hours-day, .hours-time {
+        font-size: 0.95rem;
+      }
+      .section-subtitle {
+        margin-bottom: 40px;
       }
     }
 
