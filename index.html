@@ -206,6 +206,9 @@
       filter: blur(80px);
       opacity: 0.3;
       pointer-events: none;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      will-change: transform;
     }
     .dot-pink {
       background-color: var(--pink);
@@ -750,6 +753,7 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
       transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
       cursor: pointer;
+      will-change: transform;
     }
     .gallery-img {
       width: 100%;
@@ -865,7 +869,8 @@
       flex-direction: column;
       height: 100%;
       position: relative;
-      transition: all 0.35s ease;
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform, box-shadow;
     }
     .location-card:hover {
       border-top-color: var(--pink-light);
@@ -1195,6 +1200,7 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: opacity, transform;
     }
     .fade-up-element.visible {
       opacity: 1;
@@ -1205,6 +1211,7 @@
       opacity: 0;
       transform: translateY(-20px);
       transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      will-change: opacity, transform;
     }
     .gelato-drip-element.visible {
       opacity: 1;
@@ -2302,13 +2309,20 @@
   <script>
     // Sticky Navbar & Active links
     const navbar = document.getElementById('main-nav');
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    }, { passive: true });
 
     // Mobile Menu Toggle
     const hamburgerBtn = document.getElementById('hamburger-btn');
